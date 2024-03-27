@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Define a simple product structure
+struct Product {
+    int id;
+    string name;
+    double price;
+    int quantity;
+};
+
+class ShoppingCart {
+private:
+    vector<Product> items;
+
+public:
+    void addItem(Product product) {
+        items.push_back(product);
+    }
+
+    void displayCart() {
+        double total = 0;
+        cout << "Your Shopping Cart:\n";
+        cout << "---------------------\n";
+        for (const auto &item : items) {
+            cout << item.name << "\t$" << item.price << "\tQuantity: " << item.quantity << endl;
+            total += item.price * item.quantity;
+        }
+        cout << "---------------------\n";
+        cout << "Total: $" << total << endl;
+    }
+
+    void checkout() {
+        // Code for processing payment and updating inventory goes here
+        cout << "Checkout completed. Thank you for shopping with us!\n";
+        items.clear(); // Clear the shopping cart after checkout
+    }
+};
+
+int main() {
+    // Sample products
+    Product product1 = {1, "Product A", 20.0, 2};
+    Product product2 = {2, "Product B", 30.0, 1};
+
+    // Create a shopping cart and add items
+    ShoppingCart cart;
+    cart.addItem(product1);
+    cart.addItem(product2);
+
+    // Display the shopping cart
+    cart.displayCart();
+
+    // Proceed to checkout
+    cart.checkout();
+
+    return 0;
+}
